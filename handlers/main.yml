@@ -1,0 +1,6 @@
+---
+- name: Start aerospike service
+  systemd:
+    name: aerospike
+    state: started
+    enabled: yes

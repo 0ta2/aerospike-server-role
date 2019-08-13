@@ -1,0 +1,43 @@
+---
+- name: Requires unzip
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - unzip
+    - tar
+
+- name: Require Aerospike python package
+  package:
+    name: which
+    state: present
+
+- name: Download Aerospike Package
+  unarchive:
+    src: "{{ aerospike_download_url }}"
+    dest: "{{ aerospike_source_directory }}"
+    remote_src: true
+    validate_certs: no
+
+- name: Get Names of Aerospike RPM Packages.
+  find:
+    paths: "{{ aerospike_source_directory }}/{{ aerospike_package_name }}"
+    patterns: "^(aerospike-(?:server|tools).+\\.rpm)$"
+    use_regex: true
+  register: aerospike_rpms
+
+- name: debug
+  debug:
+    msg: "{{ aerospike_rpms }}"
+
+- name: Install Aerospike package from rpm.
+  yum:
+    name: "{{ item.path }}"
+    state: present
+  with_items:
+    - "{{ aerospike_rpms.files }}"
+
+- name: Start Aerospike Server
+  systemd:
+    state: started
+    name: aerospike

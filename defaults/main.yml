@@ -1,0 +1,6 @@
+---
+# Download and Service Vars
+aerospike_version: 4.6.0.2
+aerospike_download_url: https://www.aerospike.com/artifacts/aerospike-server-community/{{ aerospike_version }}/{{ aerospike_package_name }}.tgz
+aerospike_package_name: aerospike-server-community-{{ aerospike_version }}-el{{ ansible_distribution_major_version }}
+aerospike_source_directory: /usr/local/src

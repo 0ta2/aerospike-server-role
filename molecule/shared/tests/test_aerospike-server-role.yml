@@ -1,0 +1,15 @@
+---
+package:
+  aerospike-server:
+    installed: true
+  aerospike-tools:
+    installed: true
+
+process:
+  aerospi:
+    running: true
+
+service:
+  aerospike:
+    enabled: true
+    running: true
