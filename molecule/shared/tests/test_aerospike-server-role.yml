@@ -1,12 +1,16 @@
 ---
 package:
-  aerospike-server:
+  aerospike-server-community:
     installed: true
+    versions:
+    - 4.6.0.2
   aerospike-tools:
     installed: true
+    versions:
+    - 3.21.0
 
 process:
-  aerospi:
+  asd:
     running: true
 
 service:

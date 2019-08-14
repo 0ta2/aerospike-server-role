@@ -26,10 +26,6 @@
     use_regex: true
   register: aerospike_rpms
 
-- name: debug
-  debug:
-    msg: "{{ aerospike_rpms }}"
-
 - name: Install Aerospike package from rpm.
   yum:
     name: "{{ item.path }}"
@@ -40,4 +36,5 @@
 - name: Start Aerospike Server
   systemd:
     state: started
+    enabled: yes
     name: aerospike
